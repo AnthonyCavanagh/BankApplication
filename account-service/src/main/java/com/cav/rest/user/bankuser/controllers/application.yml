@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: zuul-service
+server:
+  port: '8082'
+
+eureka:
+  client:
+    instance:
+      preferIpAddress: 'true'
+    fetchRegistry: 'true'
+    registerWithEureka: 'true'
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+
+zuul:
+  host:
+    connect-timeout-millis: 60000 # starting the connection 
+    socket-timeout-millis: 60000  # monitor the continuous incoming data flow
+  routes:
+    account:
+      path: /account/**
+      serviceId: account-service
+      url: http://localhost:8080/
+      stripPrefix: false
+    statement:
+      path: /statement/**
+      serviceId: statement-service

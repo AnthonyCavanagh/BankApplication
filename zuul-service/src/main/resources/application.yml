@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: zuul-service
+server:
+  port: '8080'
+
+eureka:
+  client:
+    instance:
+      preferIpAddress: 'true'
+    fetchRegistry: 'true'
+    registerWithEureka: 'true'
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+  instance:
+    statusPageUrl: http://localhost:8761/actuator
+    healthCheckUrl: http://localhost:8761/actuator/health
+    homePageUrl: http://localhost:8761
+    nonSecurePortEnabled: true
+    preferIpAddress: false
+
+zuul:
+  routes:
+    account:
+      path: /account/**
+      serviceId: account-service
+    statement:
+      path: /statement/**
+      serviceId: statement-service
+    transaction:
+      path: /transaction/**
+      serviceId: transaction-service

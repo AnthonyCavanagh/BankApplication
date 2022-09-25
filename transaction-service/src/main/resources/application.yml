@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: transaction-service
+server:
+  port: '8083'
+
+mongodb:
+  connection:
+    string: mongodb://localhost:27017
+  database: transactions
+
+eureka:
+  client:
+    instance:
+      preferIpAddress: 'true'
+    fetchRegistry: 'true'
+    registerWithEureka: 'true'
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
